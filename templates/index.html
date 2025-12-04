@@ -1,0 +1,30 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Flask SQLAlchemy Demo</title>
+  <style>
+    body { font-family: Arial, sans-serif; max-width:800px; margin:2rem auto; padding:1rem; }
+    form { margin-bottom:1.5rem; }
+    input, textarea { width:100%; padding:0.5rem; margin:0.25rem 0; }
+    .item { border:1px solid #ddd; padding:0.5rem; margin-bottom:0.5rem; }
+  </style>
+</head>
+<body>
+  <h1>Items</h1>
+  <form action="{{ url_for('add') }}" method="post">
+    <input type="text" name="title" placeholder="Titre" required>
+    <textarea name="content" placeholder="Contenu (optionnel)"></textarea>
+    <button type="submit">Ajouter</button>
+  </form>
+
+  {% for item in items %}
+    <div class="item">
+      <strong>{{ item.title }}</strong>
+      <p>{{ item.content }}</p>
+    </div>
+  {% else %}
+    <p>Aucun item.</p>
+  {% endfor %}
+</body>
+</html>
